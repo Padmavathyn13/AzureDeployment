@@ -1,0 +1,25 @@
+name: Databricks CD
+
+on:
+   push:
+    branches: [ "main" ]
+   pull_request:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2 
+          
+      - name: install-databricks-cli
+        uses: microsoft/install-databricks-cli@v1.0.0
+            
+      - name: Import Databricks notebooks
+        uses: ./
+        with:
+          databricks-host: ${{ secrets.HOST_NAME }}
+          databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
+          local-path: .
+          remote-path: /import-notebook
