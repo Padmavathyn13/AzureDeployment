@@ -21,5 +21,5 @@ jobs:
         with:
           databricks-host: ${{ secrets.HOST_NAME }}
           databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
-          local-path: .
+          local-path: ./
           remote-path: /import-notebook
